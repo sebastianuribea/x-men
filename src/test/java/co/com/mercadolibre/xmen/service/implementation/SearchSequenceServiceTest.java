@@ -16,6 +16,18 @@ public class SearchSequenceServiceTest {
     SearchSequenceService searchSequenceService;
 
     @Test
+    public void zeroSequencesTest() {
+        int response = searchSequenceService.getSequences(new String[]{"ATGCGA","CAGTGC","TTATTT","AGACGG","GCGTCA","TCACTG"});
+        assertEquals(0, response);
+    }
+
+    @Test
+    public void threeSequencesTest() {
+        int response = searchSequenceService.getSequences(new String[]{"ATGCGA","CAGTGC","TTATGC","AGAAGG","CCCCTA","TCACTG"});
+        assertEquals(3, response);
+    }
+
+    @Test
     public void zeroSequencesHorizontalTest() {
         int response = searchSequenceService.getHorizontal(new String[]{"ATCC","GATA","CGAG","TCGC"});
         assertEquals(0, response);

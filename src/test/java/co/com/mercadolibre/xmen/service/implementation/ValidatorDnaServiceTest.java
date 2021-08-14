@@ -36,7 +36,7 @@ public class ValidatorDnaServiceTest {
 
     @Test
     public void dnaOrderFourTest() {
-        boolean response = validatorDnaService.isNotNullAndMinOrderFour(new String[]{"ATCT","GCAT","TTAT"});
+        boolean response = validatorDnaService.isNotNullAndMinOrderFour(new String[]{"ATCT","GCAT","TTAT","GTAG"});
         assertTrue(response);
     }
 

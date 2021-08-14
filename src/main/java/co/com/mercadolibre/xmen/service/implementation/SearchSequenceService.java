@@ -5,6 +5,11 @@ import co.com.mercadolibre.xmen.service.ISearchSequence;
 public class SearchSequenceService implements ISearchSequence {
 
     @Override
+    public int getSequences(String[] dna) {
+        return getHorizontal(dna) + getVertical(dna) + getDiagonal(dna) + getInverseDiagonal(dna);
+    }
+
+    @Override
     public int getHorizontal(String[] dna) {
         int n = dna.length;
         int sequences = 0;
