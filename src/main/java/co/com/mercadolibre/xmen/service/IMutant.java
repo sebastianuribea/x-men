@@ -1,10 +1,9 @@
 package co.com.mercadolibre.xmen.service;
 
+import org.springframework.http.ResponseEntity;
+
 public interface IMutant {
 
-    int getHorizontalSequences(String[] dna);
-    int getVerticalSequences(String[] dna);
-    int getDiagonalSequences(String[] dna);
-    int getInverseDiagonalSequences(String[] dna);
+    ResponseEntity isMutant(String[] dna);
 
 }
