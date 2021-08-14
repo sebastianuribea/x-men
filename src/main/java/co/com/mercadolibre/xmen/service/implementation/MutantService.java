@@ -22,8 +22,8 @@ public class MutantService implements IMutant {
             }
         }else {
             responseEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("El adn enviado no cumple con las condiciones: \n-no ser null ni vacio. " +
-                            "\n-ser simetrico y de orden minimo 4. \n-No contener caracteres diferentes a (T,G,C,A)");
+                    .body("El ADN enviado no cumple con las condiciones: \n-no ser null ni vacío. " +
+                            "\n-ser simétrico y de orden mínimo 4. \n-No contener caracteres diferentes a (T,G,C,A)");
         }
         return responseEntity;
     }
