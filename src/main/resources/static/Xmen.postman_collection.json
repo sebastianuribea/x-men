@@ -1,0 +1,41 @@
+{
+	"info": {
+		"_postman_id": "173daff8-fe9d-4e4b-92db-98170d72abb8",
+		"name": "Xmen",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ismutant",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dna\":[\"ATGCGA\",\"CAGTGC\",\"TTATGT\",\"AGAAGG\",\"CCCCTA\",\"TCACTG\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "100.25.153.222:8080/api/public/mutant",
+					"host": [
+						"100",
+						"25",
+						"153",
+						"222"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"public",
+						"mutant"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
