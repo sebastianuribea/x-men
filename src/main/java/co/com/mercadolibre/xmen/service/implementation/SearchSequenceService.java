@@ -1,7 +1,9 @@
 package co.com.mercadolibre.xmen.service.implementation;
 
 import co.com.mercadolibre.xmen.service.ISearchSequence;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SearchSequenceService implements ISearchSequence {
 
     @Override

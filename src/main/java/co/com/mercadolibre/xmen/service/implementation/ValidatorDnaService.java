@@ -1,7 +1,9 @@
 package co.com.mercadolibre.xmen.service.implementation;
 
 import co.com.mercadolibre.xmen.service.IValidatorDna;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ValidatorDnaService implements IValidatorDna {
 
     @Override
