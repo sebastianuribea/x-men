@@ -36,6 +36,29 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "stats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "100.25.153.222:8080/api/public/stats",
+					"host": [
+						"100",
+						"25",
+						"153",
+						"222"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"public",
+						"stats"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
