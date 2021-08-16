@@ -2,6 +2,8 @@ package co.com.mercadolibre.xmen.model;
 
 import lombok.*;
 
+import java.math.BigInteger;
+
 @Getter
 @Setter
 @Builder

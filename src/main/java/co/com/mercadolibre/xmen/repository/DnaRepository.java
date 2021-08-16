@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface DnaRepository extends JpaRepository<DnaEntity,Long> {
     Optional<DnaEntity> findByDna(String dna);
 
-    @Query(value = "select count(mutant) as count_human from xmendb.dna where mutant = :value", nativeQuery = true)
+    @Query(value = "select count(mutant) as count_stats from xmendb.dna where mutant = :value", nativeQuery = true)
     JSONObject getCount(@Param("value") boolean value);
 
 }

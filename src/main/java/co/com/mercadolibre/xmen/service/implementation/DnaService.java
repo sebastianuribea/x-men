@@ -6,6 +6,7 @@ import co.com.mercadolibre.xmen.repository.DnaRepository;
 import co.com.mercadolibre.xmen.service.IDna;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.Optional;
 
 @Service
@@ -30,10 +31,9 @@ public class DnaService implements IDna {
 
     @Override
     public Stat getStatistics() {
-        Stat stat = Stat.builder().countMutantDna((int) dnaRepository.getCount(true).get("count_mutant"))
-                .countHumanDna((int) dnaRepository.getCount(false).get("count_human")).build();
-        int ratio = 0;
-        if(stat.getCountHumanDna() > 0) stat.setRatio(stat.getCountMutantDna()/stat.getCountHumanDna());
+        Stat stat = Stat.builder().countMutantDna(((BigInteger) dnaRepository.getCount(true).get("count_stats")).intValue())
+                .countHumanDna(((BigInteger) dnaRepository.getCount(false).get("count_stats")).intValue()).build();
+        if(stat.getCountHumanDna()> 0) stat.setRatio(stat.getCountMutantDna()/stat.getCountHumanDna());
         return stat;
     }
 }
