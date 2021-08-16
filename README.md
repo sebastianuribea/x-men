@@ -30,6 +30,10 @@ Descargar el archivo de la siguiente ruta e importarlo en la aplicacion de postm
 /src/main/resources/static/Xmen.postman_collection.json
 ```
 
+La ruta base de las apis en el servidor es: http://100.25.153.222:8080
+
+Ejemplo api para obtener las estadisticas http://100.25.153.222:8080/api/public/stats
+
 ## Ejecutando las pruebas ⚙️
 
 Se utilizo Junit para construir cada una de las pruebas unitarias y se configuro el pluggin de jacoco para generar el informe de cobertura de las pruebas.
@@ -58,7 +62,7 @@ _Se despliega la aplicación en una instancia de EC2 de AWS y se configura un se
 
 ## Construido con 🛠️
 
-_La aplicación fue construida con el lenguaje de programacion java, gradle como gestor de dependencias, springboot como framework y para la base de datos se utilizo MySQL_
+_La aplicación fue construida con el lenguaje de programacion java, gradle como gestor de dependencias, spring como framework y para la base de datos se utilizo MySQL_
 
 ---
 Hecho con ❤️ por [sebastianuribea](https://github.com/sebastianuribea) 😊
