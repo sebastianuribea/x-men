@@ -2,6 +2,7 @@ package co.com.mercadolibre.xmen.controller;
 
 import co.com.mercadolibre.xmen.TestUtil;
 import co.com.mercadolibre.xmen.model.Dna;
+import co.com.mercadolibre.xmen.model.Stat;
 import co.com.mercadolibre.xmen.service.IDna;
 import co.com.mercadolibre.xmen.service.IMutant;
 import org.json.simple.JSONObject;
@@ -80,7 +81,7 @@ public class MutantApiRestTest {
 
     @Test
     public void statsTest() throws Exception {
-        when(dnaService.getStatistics()).thenReturn(new JSONObject());
+        when(dnaService.getStatistics()).thenReturn(Stat.builder().build());
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .get("/api/public/stats");
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();

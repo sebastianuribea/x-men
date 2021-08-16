@@ -1,6 +1,7 @@
 package co.com.mercadolibre.xmen.service.implementation;
 
 import co.com.mercadolibre.xmen.model.DnaEntity;
+import co.com.mercadolibre.xmen.model.Stat;
 import co.com.mercadolibre.xmen.repository.DnaRepository;
 import co.com.mercadolibre.xmen.service.IDna;
 import org.json.simple.JSONObject;
@@ -9,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -54,25 +54,38 @@ public class DnaServiceTest {
 
     @Test
     public void getStatsEmptyTest() {
-        when(dnaRepository.findAll()).thenReturn(new ArrayList<DnaEntity>());
-        JSONObject object = dnaService.getStatistics();
-        assertEquals(0, object.get("count_mutant_dna"));
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("count_human",0);
+        jsonObject.put("count_mutant",0);
+        when(dnaRepository.getCount(any(Boolean.class))).thenReturn(jsonObject);
+        Stat stats = dnaService.getStatistics();
+        assertEquals(0, stats.getCountHumanDna());
     }
 
     @Test
     public void getStatsOneMutantTest() {
-        when(dnaRepository.findAll()).thenReturn(new ArrayList<DnaEntity>(){{add(DnaEntity.builder().id(1).dna("AATCCCCCTCGATTTT").mutant(true).build());}});
-        JSONObject object = dnaService.getStatistics();
-        assertEquals(1, object.get("count_mutant_dna"));
-        assertEquals(0, object.get("count_human_dna"));
+        JSONObject countMutant = new JSONObject();
+        countMutant.put("count_mutant",1);
+        JSONObject countHuman = new JSONObject();
+        countHuman.put("count_human",0);
+        when(dnaRepository.getCount(true)).thenReturn(countMutant);
+        when(dnaRepository.getCount(false)).thenReturn(countHuman);
+        Stat stats = dnaService.getStatistics();
+        assertEquals(1, stats.getCountMutantDna());
+        assertEquals(0, stats.getCountHumanDna());
     }
 
     @Test
     public void getStatsOneMutantAndOneHumanTest() {
-        when(dnaRepository.findAll()).thenReturn(new ArrayList<DnaEntity>(){{add(DnaEntity.builder().id(1).dna("AATCCCCCTCGATTTT").mutant(true).build()); add(DnaEntity.builder().id(2).dna("AGCTGTACTGCAGTAC").mutant(false).build());}});
-        JSONObject object = dnaService.getStatistics();
-        assertEquals(1, object.get("count_mutant_dna"));
-        assertEquals(1, object.get("count_human_dna"));
+        JSONObject countMutant = new JSONObject();
+        countMutant.put("count_mutant",1);
+        JSONObject countHuman = new JSONObject();
+        countHuman.put("count_human",1);
+        when(dnaRepository.getCount(true)).thenReturn(countMutant);
+        when(dnaRepository.getCount(false)).thenReturn(countHuman);
+        Stat stats = dnaService.getStatistics();
+        assertEquals(1, stats.getCountMutantDna());
+        assertEquals(1, stats.getCountHumanDna());
     }
 
 

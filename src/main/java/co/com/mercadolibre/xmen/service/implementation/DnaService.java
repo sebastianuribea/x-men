@@ -1,14 +1,12 @@
 package co.com.mercadolibre.xmen.service.implementation;
 
 import co.com.mercadolibre.xmen.model.DnaEntity;
+import co.com.mercadolibre.xmen.model.Stat;
 import co.com.mercadolibre.xmen.repository.DnaRepository;
 import co.com.mercadolibre.xmen.service.IDna;
-import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class DnaService implements IDna {
@@ -31,20 +29,11 @@ public class DnaService implements IDna {
     }
 
     @Override
-    public JSONObject getStatistics() {
-        int mutant = 0;
-        int human = 0;
+    public Stat getStatistics() {
+        Stat stat = Stat.builder().countMutantDna((int) dnaRepository.getCount(true).get("count_mutant"))
+                .countHumanDna((int) dnaRepository.getCount(false).get("count_human")).build();
         int ratio = 0;
-        List<DnaEntity> dnas = dnaRepository.findAll();
-        if(!dnas.isEmpty()){
-            mutant = dnas.stream().filter(dna -> dna.isMutant()).collect(Collectors.toList()).size();
-            human = dnas.size()-mutant;
-            if(human > 0) ratio = mutant/human;
-        }
-        JSONObject json = new JSONObject();
-        json.put("count_mutant_dna",mutant);
-        json.put("count_human_dna",human);
-        json.put("ratio", ratio);
-        return json;
+        if(stat.getCountHumanDna() > 0) stat.setRatio(stat.getCountMutantDna()/stat.getCountHumanDna());
+        return stat;
     }
 }
